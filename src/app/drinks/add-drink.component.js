@@ -13,6 +13,7 @@ var forms_1 = require("@angular/forms");
 var common_1 = require("@angular/common");
 var drink_1 = require("./drink");
 var drink_service_1 = require("./drink.service");
+var ingredient_1 = require("./ingredient");
 var AddDrinkComponent = (function () {
     function AddDrinkComponent(drinkService, location) {
         this.drinkService = drinkService;
@@ -29,11 +30,19 @@ var AddDrinkComponent = (function () {
             'description': { 'required': 'Description is required.' }
         };
     }
+    AddDrinkComponent.prototype.addNewIngredient = function () {
+        this.drink.ingredients.push(new ingredient_1.Ingredient());
+    };
+    AddDrinkComponent.prototype.removeIngredient = function (ingredient) {
+        this.drink.ingredients = this.drink.ingredients.filter(function (i) { return i !== ingredient; });
+    };
+    AddDrinkComponent.prototype.trackByIdx = function (index, obj) {
+        return index;
+    };
     AddDrinkComponent.prototype.onSubmit = function () {
         var _this = this;
-        console.log('Creating new drink...');
-        this.drinkService.create(this.drink)
-            .then(function () { return _this.goBack(); });
+        this.drink.ingredients = this.drink.ingredients.filter(function (ingredient) { return ingredient.name; });
+        this.drinkService.create(this.drink).then(function () { return _this.goBack(); });
     };
     AddDrinkComponent.prototype.goBack = function () {
         this.location.back();

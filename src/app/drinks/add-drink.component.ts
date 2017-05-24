@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 
 import { Drink } from './drink';
 import { DrinkService } from './drink.service';
+import { Ingredient } from './ingredient';
 
 @Component({
   selector: 'add-drink',
@@ -32,10 +33,21 @@ export class AddDrinkComponent {
     private location: Location
   ) {}
   
+  addNewIngredient(): void {
+    this.drink.ingredients.push(new Ingredient());
+  }
+  
+  removeIngredient(ingredient: Ingredient): void {
+    this.drink.ingredients = this.drink.ingredients.filter(i => i !== ingredient);
+  }
+    
+  trackByIdx(index: number, obj: any): any {
+    return index;
+  }
+  
   onSubmit(): void {
-    console.log('Creating new drink...');
-    this.drinkService.create(this.drink)
-      .then(() => this.goBack());
+    this.drink.ingredients = this.drink.ingredients.filter(ingredient => ingredient.name);
+    this.drinkService.create(this.drink).then(() => this.goBack());
   }
 
   goBack(): void {
