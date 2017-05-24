@@ -1,0 +1,12 @@
+<div *ngIf="drink">
+	<h2>Drink Details Component</h2>
+	<h3>#{{drink.id}} - {{drink.name}}</h3>
+	<h4>Image URL</h4>
+	<p>{{drink.imageUrl}}</p>
+	<h4>Description</h4>
+	<p>{{drink.description}}</p>
+	<h4>Ingredients</h4>
+	<ul>
+		<li *ngFor="let ingredient of drink.ingredients">{{ingredient}}</li>
+	</ul>
+</div>
