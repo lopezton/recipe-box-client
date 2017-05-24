@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+
 import { Drink } from './drink';
 import { DrinkService } from './drink.service';
 
@@ -11,10 +13,12 @@ import { DrinkService } from './drink.service';
 })
 export class DrinkListViewComponent implements OnInit {
   drinks: Drink[];
+  drinkToDelete: Drink;
   
   constructor(
     private drinkService: DrinkService,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal
   ) {}
   
   ngOnInit(): void {
@@ -32,6 +36,10 @@ export class DrinkListViewComponent implements OnInit {
     
   gotoEditDrink(drink: Drink): void {
     
+  }
+  
+  openModal(content: any) {
+    this.modalService.open(content);
   }
     
   deleteDrink(drink: Drink): void {
