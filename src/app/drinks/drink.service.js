@@ -23,6 +23,16 @@ var DrinkService = (function () {
             .then(function (res) { return res.json(); })
             .catch(this.handleError);
     };
+    DrinkService.prototype.update = function (drink) {
+        if (!drink) {
+            return;
+        }
+        var url = "http://localhost:8080/drinks/" + drink.id;
+        return this.http.put(url, JSON.stringify(drink), { headers: this.headers })
+            .toPromise()
+            .then(function (res) { return res.json(); })
+            .catch(this.handleError);
+    };
     DrinkService.prototype.delete = function (id) {
         var url = "http://localhost:8080/drinks/" + id;
         return this.http.delete(url, { headers: this.headers })

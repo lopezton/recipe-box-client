@@ -30,6 +30,8 @@ var DrinkListViewComponent = (function () {
         this.router.navigateByUrl(url);
     };
     DrinkListViewComponent.prototype.gotoEditDrink = function (drink) {
+        var url = "/manage/drinks/" + drink.id + "/edit";
+        this.router.navigateByUrl(url);
     };
     DrinkListViewComponent.prototype.openModal = function (content) {
         this.modalService.open(content);
