@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Location }                 from '@angular/common';
 
 import 'rxjs/add/operator/switchMap';
@@ -18,6 +18,7 @@ export class DrinkDetailComponent implements OnInit {
   constructor(
     private drinkService: DrinkService,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location
   ) {}
   
@@ -29,5 +30,10 @@ export class DrinkDetailComponent implements OnInit {
         
   goBack(): void {
     this.location.back();
+  }
+  
+  gotoEdit(): void {
+    const url = `/manage/drinks/${this.drink.id}/edit`;
+    this.router.navigateByUrl(url);
   }
 }
