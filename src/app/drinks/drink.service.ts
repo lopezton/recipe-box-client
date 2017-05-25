@@ -19,6 +19,15 @@ export class DrinkService {
       .then(res => res.json())
       .catch(this.handleError);
   }
+  
+  update(drink: Drink): Promise<Drink> {
+    if (!drink) { return; }
+    const url = `http://localhost:8080/drinks/${drink.id}`;
+    return this.http.put(url, JSON.stringify(drink), { headers: this.headers })
+      .toPromise()
+      .then(res => res.json())
+      .catch(this.handleError);
+  }
     
   delete(id: number): Promise<void> {
     const url = `http://localhost:8080/drinks/${id}`;

@@ -8,12 +8,13 @@ import { Ingredient } from './ingredient';
 
 @Component({
   selector: 'add-drink',
-  templateUrl: './add-drink.component.html',
-  styleUrls: [ './add-drink.component.css' ]
+  templateUrl: './drink-form.html',
+  styleUrls: [ './drink-form.css' ]
 })
 export class AddDrinkComponent {
   drink = new Drink();
   drinkForm: NgForm;
+  title: string;
   @ViewChild('drinkForm') currentForm: NgForm;
   
   formErrors = {
@@ -31,7 +32,9 @@ export class AddDrinkComponent {
   constructor(
     private drinkService: DrinkService,
     private location: Location
-  ) {}
+  ) {
+    this.title = 'Add a Drink';
+  }
   
   addNewIngredient(): void {
     this.drink.ingredients.push(new Ingredient());

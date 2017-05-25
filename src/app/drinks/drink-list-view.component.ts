@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Drink } from './drink';
 import { DrinkService } from './drink.service';
@@ -14,6 +14,7 @@ import { DrinkService } from './drink.service';
 export class DrinkListViewComponent implements OnInit {
   drinks: Drink[];
   drinkToDelete: Drink;
+  title: 'Add a Drink';
   
   constructor(
     private drinkService: DrinkService,
@@ -35,7 +36,8 @@ export class DrinkListViewComponent implements OnInit {
   }
     
   gotoEditDrink(drink: Drink): void {
-    
+    const url = `/manage/drinks/${drink.id}/edit`;
+    this.router.navigateByUrl(url);
   }
   
   openModal(content: any) {

@@ -1,15 +1,10 @@
-import { OnInit, Component } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: [ './dashboard.component.css' ]
 })
-export class DashboardComponent implements OnInit {
-  
+export class DashboardComponent {
   title = 'Dashboard';
-  
-  ngOnInit(): void {
-    
-  }
 }

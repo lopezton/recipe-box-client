@@ -10,8 +10,6 @@ var DashboardComponent = (function () {
     function DashboardComponent() {
         this.title = 'Dashboard';
     }
-    DashboardComponent.prototype.ngOnInit = function () {
-    };
     return DashboardComponent;
 }());
 DashboardComponent = __decorate([
