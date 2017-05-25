@@ -6,17 +6,18 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 var core_1 = require("@angular/core");
-var DashboardComponent = (function () {
-    function DashboardComponent() {
+var HasDrinkNamePipe = (function () {
+    function HasDrinkNamePipe() {
     }
-    return DashboardComponent;
+    HasDrinkNamePipe.prototype.transform = function (value, searchTerm) {
+        return value.name.indexOf(searchTerm) !== -1;
+    };
+    return HasDrinkNamePipe;
 }());
-DashboardComponent = __decorate([
-    core_1.Component({
-        selector: 'dashboard',
-        templateUrl: './dashboard.component.html',
-        styleUrls: ['./dashboard.component.css']
+HasDrinkNamePipe = __decorate([
+    core_1.Pipe({
+        name: 'hasDrinkName'
     })
-], DashboardComponent);
-exports.DashboardComponent = DashboardComponent;
-//# sourceMappingURL=dashboard.component.js.map
+], HasDrinkNamePipe);
+exports.HasDrinkNamePipe = HasDrinkNamePipe;
+//# sourceMappingURL=search.pipe.js.map

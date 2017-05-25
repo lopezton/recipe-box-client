@@ -3,18 +3,24 @@
 		<h2 class="panel-title">List of Drinks</h2>
 	</div>
 	
-	<div class="panel-body">		
+	<div class="panel-body">
+		<search-box class="drinks-search" searchLabelText="Search Drinks:" searchPlaceholderText="Enter search criteria" (update)="searchTerm = $event">
+			
+		</search-box>
+		<hr>
 		<div class="drinks">
-			<div class="row" *ngFor="let drink of drinks">
-				<div class="col-sm-7">
-					<span class="drink-name">{{drink.name}}</span>
-				</div>
-				<div class="col-sm-5">
-			  		<button (click)="gotoDetails(drink)">View Details</button>
-			  		<button (click)="gotoEditDrink(drink)">Edit</button>
-			  		<button (click)="drinkToDelete = drink; openModal(confirmDeleteDrink)">Remove</button>
+			<div class="panel panel-default drink" *ngFor="let drink of drinks | hasDrinkName: searchTerm">
+				<div class="panel-body">
+					<div class="col-sm-7">
+						<span class="drink-name">{{drink.name}}</span>
+					</div>
+					<div class="col-sm-5">
+				  		<button (click)="gotoDetails(drink)">View Details</button>
+				  		<button (click)="gotoEditDrink(drink)">Edit</button>
+				  		<button (click)="drinkToDelete = drink; openModal(confirmDeleteDrink)">Remove</button>
+			  		</div>
 		  		</div>
-			</div>
+	  		</div>
 		</div>
 	</div>
 </div>
