@@ -1,6 +1,9 @@
 typings
 src/**/*.js
 src/**/*.js.map
+!systemjs-angular-loader.js
+!systemjs.config.extras.js
+!systemjs.config.js
 node_modules
 jspm_packages
 bower_components
