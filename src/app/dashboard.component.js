@@ -8,7 +8,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require("@angular/core");
 var DashboardComponent = (function () {
     function DashboardComponent() {
-        this.title = 'Dashboard';
     }
     return DashboardComponent;
 }());
