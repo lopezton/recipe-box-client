@@ -14,6 +14,9 @@ import { DrinkListViewComponent } from './drinks/drink-list-view.component';
 import { EditDrinkComponent } from './drinks/edit-drink.component';
 
 import { DrinkService } from './drinks/drink.service';
+import { SearchBoxComponent } from './search-box.component';
+
+import { HasDrinkNamePipe } from './pipes/has-drink-name.pipe';
 
 @NgModule({
   imports:      [ 
@@ -29,7 +32,9 @@ import { DrinkService } from './drinks/drink.service';
     AddDrinkComponent,
     EditDrinkComponent,
     DrinkDetailComponent,
-    DrinkListViewComponent
+    DrinkListViewComponent,
+    SearchBoxComponent,
+    HasDrinkNamePipe
   ],
   bootstrap:    [ AppComponent ],
   providers: [

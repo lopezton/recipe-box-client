@@ -1,24 +1,35 @@
-<h2>Add a Drink</h2>
+<h2>{{title}}</h2>
 <form (ngSubmit)="onSubmit()" #drinkForm="ngForm">
 	<div class="form-group">
 		<label for="name">Name</label>
 		<input type="text" class="form-control" name="name" [(ngModel)]="drink.name" required>
-		<!-- <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Name is required</div>  -->
 		<div *ngIf="formErrors.name" class="alert alert-danger">{{formErrors.name}}</div>
 	</div>
 	<div class="form-group">
 		<label for="imageUrl">Image URL</label>
 		<input type="text" class="form-control" name="imageUrl" [(ngModel)]="drink.imageUrl" required>
-		<!-- <div [hidden]="imageUrl.valid || imageUrl.pristine" class="alert alert-danger">Image URL is required</div>  -->
 		<div *ngIf="formErrors.imageUrl" class="alert alert-danger">{{formErrors.imageUrl}}</div>
 	</div>
 	<div class="form-group">
 		<label for="description">Description</label>
 		<input type="text" class="form-control" name="description" [(ngModel)]="drink.description" required>
-		<!-- <div [hidden]="description.valid || description.pristine" class="alert alert-danger">Description is required</div>  -->
 		<div *ngIf="formErrors.description" class="alert alert-danger">{{formErrors.description}}</div>
 	</div>
-	<!-- TODO: Drink Ingredients -->
+	<div class="form-group">
+		<button type="button" class="btn" (click)="addNewIngredient()">Add an Ingredient</button>
+		<div [hidden]="drink.ingredients.length > 0">
+			<p>This drink currently has no ingredients. Click <a (click)="addNewIngredient()">Add an Ingredient</a> to add one.</p>
+		</div>
+	</div>
+	<div class="form-group" *ngFor="let ingredient of drink.ingredients; let i = index; trackBy: trackByIdx">
+		<label for="ingredients[{{i}}]">Ingredient {{i + 1}}</label>
+		<div class="input-group">
+			<input type="text" class="form-control" name="ingredients[{{i}}]" [(ngModel)]="ingredient.name">
+			<span class="input-group-addon remove-ingredient" (click)="removeIngredient(ingredient)">
+				<span class="glyphicon glyphicon-minus" aria-hidden="true"></span>
+			</span>
+		</div>
+	</div>
 	
 	<button type="submit" class="btn btn-success" [disabled]="!drinkForm.form.valid">Save</button>
 	<button type="button" (click)="goBack()" class="btn btn-cancel">Back</button>

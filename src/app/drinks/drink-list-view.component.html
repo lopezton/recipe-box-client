@@ -3,18 +3,41 @@
 		<h2 class="panel-title">List of Drinks</h2>
 	</div>
 	
-	<div class="panel-body">		
+	<div class="panel-body">
+		<search-box class="drinks-search" searchLabelText="Search Drinks:" searchPlaceholderText="Enter search criteria" (update)="searchTerm = $event">
+			
+		</search-box>
+		<hr>
 		<div class="drinks">
-			<div class="row" *ngFor="let drink of drinks">
-				<div class="col-sm-7">
-					<span class="drink-name">{{drink.name}}</span>
-				</div>
-				<div class="col-sm-5">
-			  		<button (click)="gotoDetails(drink)">View Details</button>
-			  		<button (click)="gotoEditDrink(drink)">Edit</button>
-			  		<button (click)="deleteDrink(drink)">Remove</button>
+			<div class="panel panel-default drink" *ngFor="let drink of drinks | hasDrinkName: searchTerm">
+				<div class="panel-body">
+					<div class="col-sm-7">
+						<span class="drink-name">{{drink.name}}</span>
+					</div>
+					<div class="col-sm-5">
+				  		<button (click)="gotoDetails(drink)">View Details</button>
+				  		<button (click)="gotoEditDrink(drink)">Edit</button>
+				  		<button (click)="drinkToDelete = drink; openModal(confirmDeleteDrink)">Remove</button>
+			  		</div>
 		  		</div>
-			</div>
+	  		</div>
 		</div>
 	</div>
 </div>
+
+<ng-template #confirmDeleteDrink let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title">Delete {{drinkToDelete.name}}?</h4>
+    <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Deleting will remove {{drinkToDelete.name}} and all existing data from the system.</p>
+    <p>Are you sure you wish to continue?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="deleteDrink(drinkToDelete); d()">Delete</button>
+    <button type="button" class="btn btn-secondary" (click)="c('Close click')">Cancel</button>
+  </div>
+</ng-template>

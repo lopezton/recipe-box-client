@@ -14,9 +14,10 @@ var common_1 = require("@angular/common");
 require("rxjs/add/operator/switchMap");
 var drink_service_1 = require("./drink.service");
 var DrinkDetailComponent = (function () {
-    function DrinkDetailComponent(drinkService, route, location) {
+    function DrinkDetailComponent(drinkService, route, router, location) {
         this.drinkService = drinkService;
         this.route = route;
+        this.router = router;
         this.location = location;
     }
     DrinkDetailComponent.prototype.ngOnInit = function () {
@@ -28,6 +29,10 @@ var DrinkDetailComponent = (function () {
     DrinkDetailComponent.prototype.goBack = function () {
         this.location.back();
     };
+    DrinkDetailComponent.prototype.gotoEdit = function () {
+        var url = "/manage/drinks/" + this.drink.id + "/edit";
+        this.router.navigateByUrl(url);
+    };
     return DrinkDetailComponent;
 }());
 DrinkDetailComponent = __decorate([
@@ -38,6 +43,7 @@ DrinkDetailComponent = __decorate([
     }),
     __metadata("design:paramtypes", [drink_service_1.DrinkService,
         router_1.ActivatedRoute,
+        router_1.Router,
         common_1.Location])
 ], DrinkDetailComponent);
 exports.DrinkDetailComponent = DrinkDetailComponent;

@@ -13,6 +13,7 @@ var forms_1 = require("@angular/forms");
 var common_1 = require("@angular/common");
 var drink_1 = require("./drink");
 var drink_service_1 = require("./drink.service");
+var ingredient_1 = require("./ingredient");
 var AddDrinkComponent = (function () {
     function AddDrinkComponent(drinkService, location) {
         this.drinkService = drinkService;
@@ -28,12 +29,21 @@ var AddDrinkComponent = (function () {
             'imageUrl': { 'required': 'Image URL is required.' },
             'description': { 'required': 'Description is required.' }
         };
+        this.title = 'Add a Drink';
     }
+    AddDrinkComponent.prototype.addNewIngredient = function () {
+        this.drink.ingredients.push(new ingredient_1.Ingredient());
+    };
+    AddDrinkComponent.prototype.removeIngredient = function (ingredient) {
+        this.drink.ingredients = this.drink.ingredients.filter(function (i) { return i !== ingredient; });
+    };
+    AddDrinkComponent.prototype.trackByIdx = function (index, obj) {
+        return index;
+    };
     AddDrinkComponent.prototype.onSubmit = function () {
         var _this = this;
-        console.log('Creating new drink...');
-        this.drinkService.create(this.drink)
-            .then(function () { return _this.goBack(); });
+        this.drink.ingredients = this.drink.ingredients.filter(function (ingredient) { return ingredient.name; });
+        this.drinkService.create(this.drink).then(function () { return _this.goBack(); });
     };
     AddDrinkComponent.prototype.goBack = function () {
         this.location.back();
@@ -85,8 +95,8 @@ __decorate([
 AddDrinkComponent = __decorate([
     core_1.Component({
         selector: 'add-drink',
-        templateUrl: './add-drink.component.html',
-        styleUrls: ['./add-drink.component.css']
+        templateUrl: './drink-form.html',
+        styleUrls: ['./drink-form.css']
     }),
     __metadata("design:paramtypes", [drink_service_1.DrinkService,
         common_1.Location])

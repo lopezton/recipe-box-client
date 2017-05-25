@@ -1,0 +1,13 @@
+.panel.drink {
+	margin-bottom: 5px;
+}
+.panel.drink:hover {
+	border-color: #00ceff;
+}
+.panel.drink > .panel-body {
+    padding: 5px 5px;
+}
+.panel.drink .drink-name {
+	display: block;
+	line-height: 25px;
+}

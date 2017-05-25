@@ -10,11 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
+var ng_bootstrap_1 = require("@ng-bootstrap/ng-bootstrap");
 var drink_service_1 = require("./drink.service");
 var DrinkListViewComponent = (function () {
-    function DrinkListViewComponent(drinkService, router) {
+    function DrinkListViewComponent(drinkService, router, modalService) {
         this.drinkService = drinkService;
         this.router = router;
+        this.modalService = modalService;
     }
     DrinkListViewComponent.prototype.ngOnInit = function () {
         this.getDrinks();
@@ -28,6 +30,11 @@ var DrinkListViewComponent = (function () {
         this.router.navigateByUrl(url);
     };
     DrinkListViewComponent.prototype.gotoEditDrink = function (drink) {
+        var url = "/manage/drinks/" + drink.id + "/edit";
+        this.router.navigateByUrl(url);
+    };
+    DrinkListViewComponent.prototype.openModal = function (content) {
+        this.modalService.open(content);
     };
     DrinkListViewComponent.prototype.deleteDrink = function (drink) {
         var _this = this;
@@ -45,7 +52,8 @@ DrinkListViewComponent = __decorate([
         styleUrls: ['./drink-list-view.component.css'],
     }),
     __metadata("design:paramtypes", [drink_service_1.DrinkService,
-        router_1.Router])
+        router_1.Router,
+        ng_bootstrap_1.NgbModal])
 ], DrinkListViewComponent);
 exports.DrinkListViewComponent = DrinkListViewComponent;
 //# sourceMappingURL=drink-list-view.component.js.map

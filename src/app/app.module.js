@@ -18,6 +18,8 @@ var drink_detail_component_1 = require("./drinks/drink-detail.component");
 var drink_list_view_component_1 = require("./drinks/drink-list-view.component");
 var edit_drink_component_1 = require("./drinks/edit-drink.component");
 var drink_service_1 = require("./drinks/drink.service");
+var search_box_component_1 = require("./search-box.component");
+var has_drink_name_pipe_1 = require("./pipes/has-drink-name.pipe");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -38,7 +40,9 @@ AppModule = __decorate([
             add_drink_component_1.AddDrinkComponent,
             edit_drink_component_1.EditDrinkComponent,
             drink_detail_component_1.DrinkDetailComponent,
-            drink_list_view_component_1.DrinkListViewComponent
+            drink_list_view_component_1.DrinkListViewComponent,
+            search_box_component_1.SearchBoxComponent,
+            has_drink_name_pipe_1.HasDrinkNamePipe
         ],
         bootstrap: [app_component_1.AppComponent],
         providers: [
